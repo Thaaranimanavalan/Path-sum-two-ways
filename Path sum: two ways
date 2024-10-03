@@ -1,0 +1,11 @@
+def find_min_path_sum(M):
+    N = len(M)
+    for i in range(1, N):
+        M[i][0] += M[i-1][0]
+        M[0][i] += M[0][i-1]
+    for i in range(1, N):
+        for j in range(1, N):
+            M[i][j] += min(M[i-1][j], M[i][j-1])
+    return M[-1][-1]
+
+print(find_min_path_sum([list(map(int, input().split())) for _ in range(int(input()))]))
